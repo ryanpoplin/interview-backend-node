@@ -1,52 +1,16 @@
 'use strict';
 
-const express = require('express'); // get our express framework module
+const express = require('express'); 
 const request = require('superagent');
 
-module.exports = function() { // export this to 'main.js'
-	const app = express(); // create an instance of an express application
-
-	require('../datafeed/data.feed')();
-
-	return app; // return the express application instance
+module.exports = function() { 
+	const app = express(); 
+	require('../datafeed/data.feed')(); 
+	return app;
 };
 
-// use a program to grab the 'url', 
- // *         {
- // *             "url": String,
- // *             "headline": String,
- // *             "imageUrl": String,
- // *             "byLine": String
- // *         }
 
-/*
- * ## Task 1 (of 2)
- *
- * Create a script starting in this file, but not limited to, that will pull
- * data from a remote source JSON feed, transform it, then output a different
- * JSON feed matching a specific schema.  This should execute when running
- * `npm start` and should log output to the console.
- *
- *
- * ### Source:
- *
- *     http://www.cnn.com/data/ocs/section/index.html:homepage1-zone-1.json
- *
- *
- * ### Output:
- *
- *     A valid JSON string representing an array of articles from the
- *     "Top stories" container with the following properties for each article:
- *
- *         {
- *             "url": String,
- *             "headline": String,
- *             "imageUrl": String,
- *             "byLine": String
- *         }
- *
- *
- * ### Other information and guidelines:
+/* ### Other information and guidelines:
  *
  * - Use the node version specified by the engines property in package.json.
  *
