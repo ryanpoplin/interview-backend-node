@@ -7,7 +7,6 @@ module.exports = function(data) {
   			if (zone.hasOwnProperty(key)) {
   				if (zone[key] === 'Top stories') {
   					require('./alter.article')(zone.containerContents);
-  					break;
   				}
     		}
   		}

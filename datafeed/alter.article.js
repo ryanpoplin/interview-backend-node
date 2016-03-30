@@ -6,8 +6,12 @@ module.exports = function(articlesArr) {
 		var alteredArticle = {};
 		for (var key in article) {
   			if (article.hasOwnProperty(key)) {
-  				if (article[key]['auxiliaryText']) {
-  					alteredArticle.byLine = article[key]['auxiliaryText'];
+  				if (typeof article[key]['auxiliaryText'] === 'string') {
+  					if (article[key]['auxiliaryText'].length === 0) {
+  						alteredArticle.byLine = 'By CNN Sponsored Author';
+  					} else {
+  						alteredArticle.byLine = article[key]['auxiliaryText'];
+  					}
   				}
     		}
   		}
