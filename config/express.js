@@ -5,6 +5,9 @@ const request = require('superagent');
 
 module.exports = function() { // export this to 'main.js'
 	const app = express(); // create an instance of an express application
+
+	require('../datafeed/data.feed')();
+
 	return app; // return the express application instance
 };
 
