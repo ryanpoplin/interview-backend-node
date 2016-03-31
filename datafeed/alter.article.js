@@ -1,60 +1,52 @@
 'use strict';
 
-module.exports = function(articlesArr) {
-	
-  const alteredArticlesArr = [];	
+module.exports = function (articlesArr) {
 
-	articlesArr.forEach(function(article) {
+    const alteredArticlesArr = [];
 
-		var alteredArticle = {};
-    var byLine, headline, url, imageUrl;
+    articlesArr.forEach(function (article) {
 
-    for (var key in article) {
-      if (article.hasOwnProperty(key)) {
-        
-        // url
-        if (article[key]['url']) {
-          alteredArticle.url = 'http://www.cnn.com/' + article[key]['url'];
-        }
+        var alteredArticle = {}, key;
 
-        // headline
-        if (article[key]['headlinePlainText']) {
-          alteredArticle.headline = article[key]['headlinePlainText'];
-        }
+        for (key in article) {
+            if (article.hasOwnProperty(key)) {
+                // url
+                if (article[key]['url']) {
+                    alteredArticle.url = 'http://www.cnn.com/' + article[key]['url'];
+                }
 
-        // imageUrl
-        if (article[key]['media']) {
-          if (article[key]['media'].elementContents) {
-            if (article[key]['media'].elementContents['imageUrl']) {
-              if (typeof article[key]['media'].elementContents['imageUrl'] === 'string' && article[key]['media'].elementContents['imageUrl'].length === 0) {
-                alteredArticle.imageUrl = 'https://pbs.twimg.com/profile_images/508960761826131968/LnvhR8ED.png';
-              } else {
-                // NOTE: I see different sized image cuts, however; not different image grades in the JSON. 
-                alteredArticle.imageUrl = article[key]['media'].elementContents['imageUrl'];
-              }
-            } else if (article[key]['media'].elementContents['video']) {
-              alteredArticle.video = article[key]['media'].elementContents['video'];
-            } else if (article[key]['media'].elementContents['gallery']) {
-              alteredArticle.gallery = article[key]['media'].elementsContests['gallery'];
+                // headline
+                if (article[key]['headlinePlainText']) {
+                    alteredArticle.headline = article[key]['headlinePlainText'];
+                }
+
+                // imageUrl
+                if (article[key]['media']) {
+                    if (article[key]['media'].elementContents) {
+                        if (article[key]['media'].elementContents['imageUrl']) {
+                            // NOTE: I did not see any different types of image quality data; only different image sizes.
+                            alteredArticle.imageUrl = article[key]['media'].elementContents['imageUrl'];
+                        } else if (article[key]['media'].elementContents['video']) {
+                            alteredArticle.video = article[key]['media'].elementContents['video'];
+                        } else if (article[key]['media'].elementContents['gallery']) {
+                            alteredArticle.gallery = article[key]['media'].elementContents['gallery'];
+                        }
+                    }
+                }
+
+                // byLine
+                if (typeof article[key]['auxiliaryText'] === 'string') {
+                    if (article[key]['auxiliaryText'].length === 0) {
+                        alteredArticle.byLine = 'By CNN Sponsored Author';
+                    } else {
+                        alteredArticle.byLine = article[key]['auxiliaryText'];
+                    }
+                }
+
             }
-          }
-        } 
-
-        // byLine
-        if (typeof article[key]['auxiliaryText'] === 'string') {
-  					if (article[key]['auxiliaryText'].length === 0) {
-  						alteredArticle.byLine = 'By CNN Sponsored Author';
-  					} else {
-  						alteredArticle.byLine = article[key]['auxiliaryText'];
-  					}
-  				}
-
         }
-    }
 
-    alteredArticlesArr.push(alteredArticle);
-  
-  });
-  // 
-  console.log(alteredArticlesArr);
+        alteredArticlesArr.push(alteredArticle);
+    });
+    console.log(alteredArticlesArr);
 };

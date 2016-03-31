@@ -8,3 +8,9 @@ const expect = require('chai').expect;
 
 
 // });
+
+ /* ## Extra Credit
+ *
+ * Write a unit test to validate that the JSON ouput is valid and matches the
+ * expected schema.
+ */
