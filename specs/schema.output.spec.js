@@ -16,21 +16,21 @@ describe('CNN Top Story Articles API', function () {
                             case 'url':
                                 expect(key).to.be.a('string');
                                 break;
-					        case 'headline':
-							    expect(key).to.be.a('string');
-							    break;
-						    case 'imageUrl':
-							    expect(key).to.be.a('string');
-							    break;
-						    case 'byLine':
-							    expect(key).to.be.a('string');
-							    break;
-						    default:
-							    break;
-					    }
-				    });
-			    });
-        	done();
+                            case 'headline':
+                                expect(key).to.be.a('string');
+                                break;
+                            case 'imageUrl':
+                                expect(key).to.be.a('string');
+                                break;
+                            case 'byLine':
+                                expect(key).to.be.a('string');
+                                break;
+                            default:
+                                break;
+                        }
+                    });
+                });
+            done();
        	});
     });
 });
