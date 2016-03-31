@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (data) {
+module.exports = function (data, callback) {
 
     const zoneContainerArr = data;
 
@@ -8,7 +8,9 @@ module.exports = function (data) {
         for (var key in zone) {
             if (zone.hasOwnProperty(key)) {
                 if (zone[key] === 'Top stories') {
-                    require('./alter.article')(zone.containerContents);
+                    require('./alter.article')(zone.containerContents, function (dataFeed) {
+                        callback(dataFeed);
+                    });
                 }
             }
         }

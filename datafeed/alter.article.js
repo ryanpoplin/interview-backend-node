@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (articlesArr) {
+module.exports = function (articlesArr, callback) {
 
     const alteredArticlesArr = [];
 
@@ -10,6 +10,8 @@ module.exports = function (articlesArr) {
 
         for (key in article) {
             if (article.hasOwnProperty(key)) {
+
+                // TODO: move these into modules
                 // url
                 if (article[key]['url']) {
                     alteredArticle.url = `http://www.cnn.com${article[key]['url']}`;
@@ -48,5 +50,5 @@ module.exports = function (articlesArr) {
 
         alteredArticlesArr.push(alteredArticle);
     });
-    console.log(alteredArticlesArr);
+    callback(alteredArticlesArr);
 };
