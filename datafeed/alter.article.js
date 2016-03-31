@@ -12,7 +12,7 @@ module.exports = function (articlesArr) {
             if (article.hasOwnProperty(key)) {
                 // url
                 if (article[key]['url']) {
-                    alteredArticle.url = 'http://www.cnn.com/' + article[key]['url'];
+                    alteredArticle.url = `http://www.cnn.com${article[key]['url']}`;
                 }
 
                 // headline
