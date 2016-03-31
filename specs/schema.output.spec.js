@@ -31,6 +31,6 @@ describe('CNN Top Story Articles API', function () {
                     });
                 });
             done();
-       	});
+        });
     });
 });
