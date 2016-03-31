@@ -5,8 +5,7 @@ module.exports = function () {
     const app = express();
 
     require('../datafeed/data.feed')(function (dataFeed) {
-        // console.log(dataFeed);
-        return dataFeed;
+        console.log(JSON.stringify(dataFeed));
     });
 
     return app;

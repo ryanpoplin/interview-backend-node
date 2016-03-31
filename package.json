@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Interview - Backend Node",
   "scripts": {
-    "start": "nodemon main.js",
+    "start": "node main.js",
     "test": "eslint main.js ./config/config.js ./env/development.js ./config/express.js ./datafeed/data.feed.js ./datafeed/config.article.js ./datafeed/alter.article.js"
   },
   "engines": {
