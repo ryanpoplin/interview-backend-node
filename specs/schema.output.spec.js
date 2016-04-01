@@ -1,6 +1,6 @@
 'use strict';
 
-// this file will be excuded from eslint, however, it meets the linting standards
+// this file will be excluded from eslint, however, it meets the linting standards
 // get mocha; npm install mocha -g
 // to run this test in your terminal; mocha ./specs/schema.output.spec.js
 
