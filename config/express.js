@@ -1,17 +1,20 @@
 'use strict';
 
 import express from 'express';
+import consign from 'consign'; 
 
-module.exports = function () {
+module.exports = () => {
     const app = express();
-
-    // TODO: move routes into a routes file within a routes directory
-    app.get('/', (req, res) =>
-    res.json({status: 'NTask API'}));
-
+    
+    consign()
+        .include('models')
+        .then('libs/middlewares.js')
+        .then('routes')
+        .then('libs/boot.js')
+        .into(app);
+    
     // require('../datafeed/data.feed')(function (dataFeed) {
     //     console.log(JSON.stringify(dataFeed));
     // });
-
     return app;
 };
