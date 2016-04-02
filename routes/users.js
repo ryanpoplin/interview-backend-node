@@ -1,16 +1,16 @@
 'use strict';
 
-import Task from '../models/task';
+import User from '../models/user';
 
 module.exports = (app) => {
 
 	// TODO: move logic inside each function into its own module
-	app.route('/tasks')
+	app.route('/users')
 	.get((req, res) => {
-		const promise = Task.find({}).exec();
-		promise.then((tasks) => {
+		const promise = User.find({}).exec();
+		promise.then((users) => {
 			res.json({
-				tasks: tasks
+				users: users
 			});
 		})
 		.catch((err) => {
@@ -20,11 +20,11 @@ module.exports = (app) => {
 		});
 	})
 	.post((req, res) => {
-		const task = new Task(req.body);
-		const promise = task.save();
-		promise.then((task) => {
+		const user = new User(req.body);
+		const promise = user.save();
+		promise.then((user) => {
 			res.json({
-				task: task,
+				user: user,
 				created: true
 			});
 		})
@@ -36,13 +36,13 @@ module.exports = (app) => {
 		});
 	});
 
-	app.route('/tasks/:id')
+	app.route('/users/:id')
 	// list a single task
 	.get((req, res) => {
-		const promise = Task.findOne({_id: req.params.id});
-		promise.then((task) => {
+		const promise = User.findOne({_id: req.params.id});
+		promise.then((user) => {
 			res.json({
-				task: task
+				user: user
 			});
 		})
 		.catch((err) => {
@@ -53,10 +53,10 @@ module.exports = (app) => {
 	})
 	// update a single task
 	.put((req, res) => {
-		const promise = Task.findByIdAndUpdate(req.params.id, req.body);
-		promise.then((task) => {
+		const promise = User.findByIdAndUpdate(req.params.id, req.body);
+		promise.then((user) => {
 			res.json({
-				task: task,
+				user: user,
 				updated: true
 			});
 		})
@@ -69,10 +69,10 @@ module.exports = (app) => {
 	})
 	// delete a single task
 	.delete((req, res) => {
-		const promise = Task.remove({_id: req.params.id});
-		promise.then((task) => {
+		const promise = User.remove({_id: req.params.id});
+		promise.then((user) => {
 			res.json({
-				task: task,
+				user: user,
 				removed: true
 			});
 		})
