@@ -1,6 +1,7 @@
 'use strict';
 
-module.exports = app => {
+// not using app for anything just yet
+module.exports = (/*app*/) => {
 	return {
 		findAll: (params, callback) => {
 			return callback([
