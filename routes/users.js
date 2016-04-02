@@ -4,7 +4,6 @@ import User from '../models/user';
 
 module.exports = (app) => {
 
-	// TODO: move logic inside each function into its own module
 	app.route('/users')
 	.get((req, res) => {
 		const promise = User.find({}).exec();
@@ -37,7 +36,6 @@ module.exports = (app) => {
 	});
 
 	app.route('/users/:id')
-	// list a single task
 	.get((req, res) => {
 		const promise = User.findOne({_id: req.params.id});
 		promise.then((user) => {
@@ -51,7 +49,6 @@ module.exports = (app) => {
 			});
 		});
 	})
-	// update a single task
 	.put((req, res) => {
 		const promise = User.findByIdAndUpdate(req.params.id, req.body);
 		promise.then((user) => {
@@ -67,7 +64,6 @@ module.exports = (app) => {
 			});
 		});
 	})
-	// delete a single task
 	.delete((req, res) => {
 		const promise = User.remove({_id: req.params.id});
 		promise.then((user) => {
