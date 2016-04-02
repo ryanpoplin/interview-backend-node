@@ -1,10 +1,19 @@
 'use strict';
 
+const Task = require('../models/task');
+
 module.exports = (app) => {
-	const Tasks = app.db.models.Tasks;
+
 	app.get('/tasks', (req, res) => {
-        Tasks.findAll({}).then(tasks => {
-        	res.json({tasks: tasks});
-        });
+       	Task.find({}, (err, tasks) => {
+			if (err) {
+				res.send(err);
+			} else {
+				res.json({
+        			tasks: tasks 
+        		});
+			}
+		});
     });
+
 };
