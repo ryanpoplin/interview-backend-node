@@ -16,5 +16,5 @@ module.exports = () => {
         .then('libs/boot.js')
         .into(app);
 
-    console.log(app);
+    // console.log(app);
 };
