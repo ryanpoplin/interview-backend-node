@@ -5,9 +5,9 @@ mongoose.Promise = require('bluebird');
 const Schema = mongoose.Schema;
 
 const TaskSchema = new Schema({
-	title: {type: String, required: true, unique: true},
+	title: {type: String, required: true},
 	done: {type: Boolean, required: true},
-	userId: {type: String, required: true, unique: false}
+	userId: {type: String, required: true}
 });
 
 module.exports = mongoose.model('Task', TaskSchema);
