@@ -11,5 +11,6 @@ module.exports = () => {
         .then('libs/middlewares.js')
         .then('routes')
         .then('libs/boot.js')
+        // .then('datafeed/data.feed')
         .into(app);
 };

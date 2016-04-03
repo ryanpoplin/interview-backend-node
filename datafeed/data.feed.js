@@ -12,8 +12,3 @@ module.exports = function (callback) {
     });
 
 };
-
-// use this to get this JSON data
-// require('../datafeed/data.feed')(function (dataFeed) {
-//     console.log(JSON.stringify(dataFeed));
-// });

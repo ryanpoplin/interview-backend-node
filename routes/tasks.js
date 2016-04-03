@@ -1,8 +1,13 @@
 'use strict';
 
 import Task from '../models/task';
+import verifyToken from '../libs/verify.token';
 
 module.exports = (app) => {
+
+	app.use((req, res, next) => {
+		verifyToken(req, res, next);
+	});
 
 	app.route('/tasks')
 	.get((req, res) => {
@@ -49,6 +54,7 @@ module.exports = (app) => {
 			});
 		});
 	})
+	// TODO: for put and delete, add the decode token module conditionals
 	.put((req, res) => {
 		const promise = Task.findByIdAndUpdate(req.params.id, req.body);
 		promise.then((task) => {

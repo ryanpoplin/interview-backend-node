@@ -3,6 +3,7 @@
 import User from '../models/user';
 import jwt from 'jsonwebtoken';
 import createToken from '../libs/token';
+import verifyToken from '../libs/verify.token';
 import decodeToken from '../libs/decode.token';
 
 module.exports = (app) => {
@@ -17,6 +18,10 @@ module.exports = (app) => {
 		.catch((err) => {
 			console.log(err);
 			console.log(err.code === 11000);
+			res.json({
+				success: false,
+				message: err
+			});
 		});
 	});
 
@@ -31,29 +36,13 @@ module.exports = (app) => {
 		}
 	});
 
-	// move into a reuseable module for different auth middleware needs...
 	app.use((req, res, next) => {
-		// TODO: move into a seperate module
-		const token = req.body.token || req.query.token || req.headers['x-access-token'];
-		if (token) {
-			jwt.verify(token, '**890890Rr&&rR890890``', function(err, decoded) {
-				if (err) {
-					return res.status(403).send({
-						success: false,
-						message: 'Failed to authorize token.'
-					});
-				} else {
-					req.decoded = decoded;
-					next();
-				}
-			});
-		} else {
-			return res.status(403).send({
-				success: false,
-				message: 'No token provided.'
-			});
-		}
+		verifyToken(req, res, next);
 	});
+
+	// analyize all aspects of security here...
+
+	// '/users/signout' // invalidate the jsonwebtoken
 
 	app.route('/users')
 	.get((req, res) => {
@@ -85,7 +74,7 @@ module.exports = (app) => {
 		});
 	})
 	.put((req, res) => {
-		if (decodeToken(req) === req.params.id || decodeToken(req) === req.body.id) {
+		if (decodeToken(req) === req.params.id) {
 			const promise = User.findByIdAndUpdate(req.params.id, req.body);
 			promise.then((user) => {
 				res.json({
@@ -106,7 +95,7 @@ module.exports = (app) => {
 		}
 	})
 	.delete((req, res) => {
-		if (decodeToken(req) === req.params.id || decodeToken(req) === req.body.id) {
+		if (decodeToken(req) === req.params.id) {
 			const promise = User.remove({_id: req.params.id});
 			promise.then((user) => {
 				res.json({
