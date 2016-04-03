@@ -1,7 +1,9 @@
 'use strict';
 
 import User from '../models/user';
+import jwt from 'jsonwebtoken';
 import createToken from '../libs/token';
+import decodeToken from '../libs/decode.token';
 
 module.exports = (app) => {
 
@@ -11,30 +13,45 @@ module.exports = (app) => {
 		const promise = user.save();
 		promise.then((user) => {
 			createToken(req, res, req.body.email, req.body.password);
-			// res.json({
-			// 	user: user,
-			// 	created: true
-			// });
 		})
 		.catch((err) => {
 			console.log(err);
 			console.log(err.code === 11000);
-			// res.json({
-			// 	error: err,
-			// 	created: false
-			// });
 		});
 	});
 
-	// app.route('users/signin')
-	// .post((req, res) => {
+	app.route('users/signin')
+	.post((req, res) => {
+		if (req.body.email && req.body.password) {
+			createToken(req, res, req.body.email, req.body.password);
+		} else {	
+			res.json({
+				error: 'You must provide a valid email and password to login to your account. If you do not have an account, you must create one.'
+			});
+		}
+	});
 
-	// });
-
-	// all routes from this point forward require a jsonwebtoken to access
 	app.route('/users')
-	.all((req, res) => {
-		// do jsonwebtoken middleware here since we know that all routes on the 'app' object will require auth token to access
+	.all((req, res, next) => {
+		const token = req.body.token || req.query.token || req.headers['x-access-token'];
+		if (token) {
+			jwt.verify(token, '**890890Rr&&rR890890``', function(err, decoded) {
+				if (err) {
+					return res.status(403).send({
+						success: false,
+						message: 'Failed to authorize token.'
+					});
+				} else {
+					req.decoded = decoded;
+					next();
+				}
+			});
+		} else {
+			return res.status(403).send({
+				success: false,
+				message: 'No token provided.'
+			});
+		}
 	})
 	.get((req, res) => {
 		const promise = User.find({}).exec();
