@@ -5,9 +5,7 @@ import consign from 'consign';
 
 module.exports = () => {
     const app = express(); 
-
     require('../db')();
-
     consign()
     	.include('models')
         .then('libs/middlewares.js')
