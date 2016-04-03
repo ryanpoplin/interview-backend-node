@@ -15,9 +15,4 @@ module.exports = (app) => {
 		res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
 		next();
 	});
-	// app.use((req, res, next) => {
-	// 	console.log(req.url);
-	// 	console.log(req.body);
-	// 	next();
-	// });
 };

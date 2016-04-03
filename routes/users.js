@@ -31,8 +31,7 @@ module.exports = (app) => {
 		}
 	});
 
-	app.route('/users')
-	.all((req, res, next) => {
+	app.use((req, res, next) => {
 		const token = req.body.token || req.query.token || req.headers['x-access-token'];
 		if (token) {
 			jwt.verify(token, '**890890Rr&&rR890890``', function(err, decoded) {
@@ -52,7 +51,9 @@ module.exports = (app) => {
 				message: 'No token provided.'
 			});
 		}
-	})
+	});
+
+	app.route('/users')
 	.get((req, res) => {
 		const promise = User.find({}).exec();
 		promise.then((users) => {
