@@ -20,7 +20,7 @@ module.exports = (app) => {
 		});
 	});
 
-	app.route('users/signin')
+	app.route('/users/signin')
 	.post((req, res) => {
 		if (req.body.email && req.body.password) {
 			createToken(req, res, req.body.email, req.body.password);
@@ -31,7 +31,9 @@ module.exports = (app) => {
 		}
 	});
 
+	// move into a reuseable module for different auth middleware needs...
 	app.use((req, res, next) => {
+		// TODO: move into a seperate module
 		const token = req.body.token || req.query.token || req.headers['x-access-token'];
 		if (token) {
 			jwt.verify(token, '**890890Rr&&rR890890``', function(err, decoded) {
