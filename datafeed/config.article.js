@@ -1,14 +1,14 @@
 'use strict';
 
-module.exports = function (data, callback) {
+module.exports = (data, callback) => {
 
     const zoneContainerArr = data;
 
-    zoneContainerArr.forEach(function (zone) {
+    zoneContainerArr.forEach((zone) => {
         for (var key in zone) {
             if (zone.hasOwnProperty(key)) {
                 if (zone[key] === 'Top stories') {
-                    require('./alter.article')(zone.containerContents, function (dataFeed) {
+                    require('./alter.article')(zone.containerContents, (dataFeed) => {
                         callback(dataFeed);
                     });
                 }

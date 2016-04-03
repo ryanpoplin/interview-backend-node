@@ -1,10 +1,10 @@
 'use strict';
 
-module.exports = function (articlesArr, callback) {
+module.exports = (articlesArr, callback) => {
 
     const alteredArticlesArr = [];
 
-    articlesArr.forEach(function (article) {
+    articlesArr.forEach((article) => {
 
         var alteredArticle = {}, key;
 
