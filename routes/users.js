@@ -82,34 +82,46 @@ module.exports = (app) => {
 		});
 	})
 	.put((req, res) => {
-		const promise = User.findByIdAndUpdate(req.params.id, req.body);
-		promise.then((user) => {
-			res.json({
-				user: user,
-				updated: true
+		if (decodeToken(req) === req.params.id || decodeToken(req) === req.body.id) {
+			const promise = User.findByIdAndUpdate(req.params.id, req.body);
+			promise.then((user) => {
+				res.json({
+					user: user,
+					updated: true
+				});
+			})
+			.catch((err) => {
+				res.json({
+					error: err,
+					updated: false
+				});
 			});
-		})
-		.catch((err) => {
+		} else {
 			res.json({
-				error: err,
-				updated: false
+				error: 'You cannot edit another users\' data.'
 			});
-		});
+		}
 	})
 	.delete((req, res) => {
-		const promise = User.remove({_id: req.params.id});
-		promise.then((user) => {
-			res.json({
-				user: user,
-				removed: true
+		if (decodeToken(req) === req.params.id || decodeToken(req) === req.body.id) {
+			const promise = User.remove({_id: req.params.id});
+			promise.then((user) => {
+				res.json({
+					user: user,
+					removed: true
+				});
+			})
+			.catch((task) => {	
+				res.json({
+					error: err,
+					removed: false
+				});
 			});
-		})
-		.catch((task) => {	
+		} else {
 			res.json({
-				error: err,
-				removed: false
+				error: 'You cannot delete another users\' data'
 			});
-		});
+		}
 	});
 
 };
