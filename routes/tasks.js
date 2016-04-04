@@ -27,7 +27,6 @@ module.exports = (app) => {
 	.post((req, res) => {
 		const promise = User.findOne({_id: req.decoded.userId});
 		promise.then((user) => {
-			console.log()
 			req.body.userId = req.decoded.userId;
 			const task = new Task(req.body);
 			const promise = task.save();

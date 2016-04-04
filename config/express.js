@@ -2,21 +2,15 @@
 
 import express from 'express';
 import consign from 'consign';
-import Emitter from 'events';
+import EventEmitter from 'events';
+import util from 'util';
 
 module.exports = () => {
     const app = express(); 
 
     // 
 
-    const emitter = new Emitter();
-    emitter.on('event', () => {
-    	console.log('event 1');
-    });
-    emitter.on('event', () => {
-    	console.log('event 2');
-    });
-    emitter.emit('event');
+    console.log(require('../libs/buffer'));
 
     // 
 

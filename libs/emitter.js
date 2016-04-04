@@ -33,3 +33,31 @@ module.exports = Emitter;
 
 // core emitter class usage:
 
+// const eventConfig = require('./config').events;
+
+// const emitter = new Emitter();
+// emitter.on(eventConfig.EVENT, () => {
+// 	console.log('event 1');
+// });
+// emitter.on(eventConfig.EVENT, () => {
+// 	console.log('event 2');
+// });
+// emitter.emit(eventConfig.EVENT);
+
+// import EventEmitter from 'events';
+// import util from 'util';
+
+// function Greetr() {
+// 	this.greeting = 'Hello World'; 
+// }
+// util.inherits(Greetr, EventEmitter);
+// Greetr.prototype.greet = function(data) {
+// 	console.log(this.greeting);
+// 	this.emit('greet', data);
+// };
+// const greetr1 = new Greetr();
+// greetr1.on('greet', function(data) {
+// 	console.log('Someone greeted!');
+// 	console.log(data);
+// });
+// greetr1.greet('Some extra data for the event listener to provide...');
