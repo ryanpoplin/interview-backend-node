@@ -1,13 +1,9 @@
 'use strict';
 
 module.exports = (articlesArr, callback) => {
-
     const alteredArticlesArr = [];
-
     articlesArr.forEach((article) => {
-
         var alteredArticle = {}, key;
-
         for (key in article) {
             if (article.hasOwnProperty(key)) {
 

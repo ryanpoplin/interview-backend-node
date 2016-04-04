@@ -30,3 +30,6 @@ module.exports = Emitter;
 // 	console.log('another event occured');
 // });
 // emitter.emit('go');
+
+// core emitter class usage:
+

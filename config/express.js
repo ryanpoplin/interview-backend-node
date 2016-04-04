@@ -2,14 +2,21 @@
 
 import express from 'express';
 import consign from 'consign';
-// import Emitter from '../libs/emitter';
+import Emitter from 'events';
 
 module.exports = () => {
     const app = express(); 
 
     // 
 
-    
+    const emitter = new Emitter();
+    emitter.on('event', () => {
+    	console.log('event 1');
+    });
+    emitter.on('event', () => {
+    	console.log('event 2');
+    });
+    emitter.emit('event');
 
     // 
 
