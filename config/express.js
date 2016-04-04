@@ -2,17 +2,9 @@
 
 import express from 'express';
 import consign from 'consign';
-import EventEmitter from 'events';
-import util from 'util';
 
 module.exports = () => {
     const app = express(); 
-
-    // 
-
-    console.log(require('../libs/buffer'));
-
-    // 
 
     require('../db')();
     
