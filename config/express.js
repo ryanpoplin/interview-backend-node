@@ -4,15 +4,15 @@ import express from 'express';
 import consign from 'consign';
 
 module.exports = () => {
-    const app = express(); 
+    // const app = express(); 
 
-    require('../db')();
+    // require('../db')();
     
-    consign()
-    	.include('models')
-        .then('libs/middlewares.js')
-        .then('routes')
-        .then('libs/boot.js')
-        // .then('datafeed/data.feed.js')
-        .into(app);
+    // consign()
+    // 	.include('models')
+    //     .then('libs/middlewares.js')
+    //     .then('routes')
+    //     .then('libs/boot.js')
+    //     // .then('datafeed/data.feed.js')
+    //     .into(app);
 };

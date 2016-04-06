@@ -1,3 +1,4 @@
 'use strict';
 
-require('./config/express')();
+require('./libs/boot')();
+// require('./config/express')();
