@@ -12,7 +12,7 @@ const UserSchema = new Schema({
 });
 
 UserSchema.pre('save', function(next) {
-	var user = this;
+	const user = this;
 	if (!user.isModified('password')) {
 		return next();
 	} else {
@@ -28,7 +28,7 @@ UserSchema.pre('save', function(next) {
 });
 
 UserSchema.methods.comparePassword = function(password) {
-	var user = this;
+	const user = this;
 	return bcrypt.compareSync(password, user.password);
 };
 

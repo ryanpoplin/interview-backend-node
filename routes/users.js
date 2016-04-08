@@ -42,6 +42,7 @@ module.exports = (app) => {
 
 	// analyize all aspects of security here...
 
+	// makes since to just have the client side apps remove the jwt from memory. However, we should treat our API's like what they are: data feeds. Figure a sweet algorithm out to solve this problem...
 	// '/users/signout' // invalidate the jsonwebtoken
 
 	app.route('/users')
