@@ -5,7 +5,7 @@ import cluster from 'cluster';
 import os from 'os';
 const numCPUs = require('os').cpus().length;
 
-module.exports = (app) => {
+module.exports = () => {
 
 	if (cluster.isMaster) {
 	
@@ -27,10 +27,17 @@ module.exports = (app) => {
 	
 	} else {
 
-	  http.createServer((req, res) => {
-	    res.writeHead(200);
+	  http.createServer((req, res) => { // our server callback
+	    
+	    // dynamic header
+	    res.writeHead(200, {
+	    	'Content-Type': 'text/plain'
+	    });
+	  
+	  	// dynamic routing  
 	    res.end('hello world\n');
-	  }).listen(8000);
+	  
+	  }).listen(8080, '127.0.0.1');
 	  console.log('Node.js HTTP server initialized!');
 
 	}
