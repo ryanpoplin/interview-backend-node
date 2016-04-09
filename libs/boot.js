@@ -24,9 +24,9 @@ module.exports = () => {
 	    console.log(`${worker.process.pid} died`);
 	  });
 	} else {
-	  http.createServer((req, res) => { // our server callback
+	  http.createServer((req, res) => {
 	    
-	  	if (req.url === '/') {
+		if (req.url === '/') {
 	  		res.writeHead(200, {
 	  			'Content-Type': 'text/html',
 	  			'Access-Control-Allow-Origin': '*'
@@ -45,6 +45,13 @@ module.exports = () => {
 		  	res.end(JSON.stringify(jsonObj));
 	    } else {
 			res.writeHead(404);
+
+			// rgx
+			const rgx = /hello/; // regex object literal syntax to check 'strings' for patterns
+			// here we're checking that the string passed into the .test() method of the rxg object 
+			// will contain 'hello' at some point in general
+			console.log(rgx.test('Hello, ... hello I want this string to contain the text: \"hello\"'));
+		    
 		    res.end();
 	    }
 
