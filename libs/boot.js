@@ -4,11 +4,10 @@ import http from 'http';
 import cluster from 'cluster';
 import os from 'os';
 const numCPUs = require('os').cpus().length;
+import fs from 'fs';
 
 module.exports = () => {
-
 	if (cluster.isMaster) {
-	
 	  for (var i = 0; i < numCPUs; i++) {
 	    cluster.fork();
 	  }
@@ -24,22 +23,33 @@ module.exports = () => {
 	  cluster.on('exit', (worker, code, signal) => {
 	    console.log(`${worker.process.pid} died`);
 	  });
-	
 	} else {
-
 	  http.createServer((req, res) => { // our server callback
 	    
-	    // dynamic header
-	    res.writeHead(200, {
-	    	'Content-Type': 'text/plain'
-	    });
-	  
-	  	// dynamic routing  
-	    res.end('hello world\n');
-	  
+	  	if (req.url === '/') {
+	  		res.writeHead(200, {
+	  			'Content-Type': 'text/html',
+	  			'Access-Control-Allow-Origin': '*'
+	  		});
+
+	  		fs.createReadStream('/Users/byrdannfox/interview-backend-node/templates/test.html').pipe(res);
+	  	} else if (req.url === '/api') {
+	    	res.writeHead(200, {
+		    	'Content-Type': 'application/json',
+		    	'Access-Control-Allow-Origin': '*'
+	    	});
+
+		  	const jsonObj = {
+		  		data: 'data'
+		  	};
+		  	res.end(JSON.stringify(jsonObj));
+	    } else {
+			res.writeHead(404);
+		    res.end();
+	    }
+
 	  }).listen(8080, '127.0.0.1');
 	  console.log('Node.js HTTP server initialized!');
-
 	}
 
 	// // server application 1
