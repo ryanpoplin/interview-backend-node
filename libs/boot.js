@@ -45,13 +45,67 @@ module.exports = () => {
 		  	res.end(JSON.stringify(jsonObj));
 	    } else {
 			res.writeHead(404);
-
-			// rgx
-			const rgx = /hello/; // regex object literal syntax to check 'strings' for patterns
-			// here we're checking that the string passed into the .test() method of the rxg object 
-			// will contain 'hello' at some point in general
-			console.log(rgx.test('Hello, ... hello I want this string to contain the text: \"hello\"'));
 		    
+		    // ...
+			createRegex(regex) => { // use a valid regex like: /l/gi for now
+				try {
+					if (regex.charAt(0) === '/') { // then we have a possibly valid regex
+						regex = regex.split('/'); // '/l/gi' for example, it'd equal ['', 'l', 'gi']
+						regex.shift(); // since we got rid of the '/'s, shift off the '' at index 0. ['l', 'gi']
+						const flags = regex.pop(); // get the last items off array 'regex flags'; set flags to 'gi'
+						regex.unshift('/'); // add back the beginning /
+						regex.push('/'); // add back the ending /
+						regex = regex.join(''); // make the array a string without commas
+						console.log(regex); // log it in this state
+						regex = new RegExp(regex, flags); // create a new RegExp object with the pattern and the flags
+						console.log(regex); // log this state
+						return regex; // return it to program that requires its value
+					} else {
+						console.log('The Regular Expression is not valid.');
+					}
+				} catch (e) {
+					err('The Regular Expression is invalid.');
+					console.log('Error');
+					return false;
+				}
+			}
+
+			// getMatches(regex, text) => {
+			// 	const results = [];
+			// 	const result;
+			// 	if (regex.global) {
+			// 		while ((result = regex.exec(text)) !== null) {
+			// 			results.push(result);
+			// 		}
+			// 	} else {
+			// 		results.push(regex.exec(text));
+			// 	}
+			// 	return results;
+			// }
+
+			// getMatchesCountString(results) => {
+			// 	if (results.length === 1) {
+			// 		console.log('There was 1 match...');
+			// 	} else {
+			// 		console.log(`There are ${results.length} matches...`);
+			// 	}
+			// }
+
+			// getResultsString(results, text) => {
+			// 	const i;
+			// 	for (i = results.length - 1; i >= 0; i--) {
+			// 		const result = results[i];
+			// 		const match = result.toString();
+			// 		const prefix = text.substr(0, result.index);
+			// 		const suffix = text.substr(result.index + match.length);
+			// 		console.log(prefix, match, suffix, text);
+			// 	}
+			// }
+
+			createRegex('/l/gi');
+
+			// ...
+
 		    res.end();
 	    }
 
