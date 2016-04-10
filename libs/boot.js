@@ -47,9 +47,9 @@ module.exports = () => {
 			res.writeHead(404);
 		    
 		    // useful for client-side input, but also interesting regex manipulation based on possible params
-			function createRegex(regex) { // use a valid regex like: /l/gi for now
+			function createRegex (regex) /*String*/ { // use a valid regex like: /l/gi for now
 				try {
-					if (regex.charAt(0) === '/') { // then we have a possibly valid regex
+					if (regex.charAt(0) === '/') { // then we have a possibly valid regex literal syntax
 						regex = regex.split('/'); // '/l/gi' for example, it'd equal ['', 'l', 'gi']
 						regex.shift(); // since we got rid of the '/'s, shift off the '' at index 0. ['l', 'gi']
 						const flags = regex.pop(); // get the last items off array 'regex flags'; set flags to 'gi'
@@ -61,21 +61,16 @@ module.exports = () => {
 						console.log('The Regular Expression is not valid.');
 					}
 				} catch (e) {
-					err('The Regular Expression is not valid.');
 					console.log('Error');
 					return false;
 				}
 			}
 
-			// getMatches(regex, text) => {
+			// function getMatches (regex, text) /*RegEx, String*/ {
 			// 	const results = [];
 			// 	const result;
-			// 	if (regex.global) {
-			// 		while ((result = regex.exec(text)) !== null) {
-			// 			results.push(result);
-			// 		}
-			// 	} else {
-			// 		results.push(regex.exec(text));
+			// 	while (result = regex.exec(text) !== null) {
+			// 		results.push(result);
 			// 	}
 			// 	return results;
 			// }
@@ -99,7 +94,8 @@ module.exports = () => {
 			// 	}
 			// }
 
-			createRegex('/world/gi');
+			createRegex(/world/);
+			// getMatches(createRegex('/world/', 'What in the world...'));
 
 			// ...
 
