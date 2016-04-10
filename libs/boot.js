@@ -55,7 +55,6 @@ module.exports = () => {
 						const flags = regex.pop(); // get the last items off array 'regex flags'; set flags to 'gi'
 						regex = regex.join(''); // make the array a string without commas
 						regex = new RegExp(regex, flags); // create a new RegExp object with the pattern and the flags
-						console.log(regex); // log this state
 						return regex; // return it to program that requires its value
 					} else {
 						console.log('The Regular Expression is not valid.');
@@ -66,36 +65,37 @@ module.exports = () => {
 				}
 			}
 
-			// function getMatches (regex, text) /*RegEx, String*/ {
-			// 	const results = [];
-			// 	const result;
-			// 	while (result = regex.exec(text) !== null) {
-			// 		results.push(result);
-			// 	}
-			// 	return results;
-			// }
+			function getMatches (regex, text) /*RegEx, String*/ {
+				const results = [];
+				const regexLoopCondition = createRegex(regex.toString());
+				while (regexLoopCondition.exec(text) !== null) {
+					results.push(regex.exec(text));
+				}
+				console.log(results);
+				return results;
+			}
 
-			// getMatchesCountString(results) => {
-			// 	if (results.length === 1) {
-			// 		console.log('There was 1 match...');
-			// 	} else {
-			// 		console.log(`There are ${results.length} matches...`);
-			// 	}
-			// }
+			function getMatchesCountString (results) {
+				if (results.length > 0) {
+					console.log(`There are ${results.length} matches`);
+				} else {
+					console.log('There are 0 matches');
+				}
+			}
 
-			// getResultsString(results, text) => {
-			// 	const i;
-			// 	for (i = results.length - 1; i >= 0; i--) {
-			// 		const result = results[i];
-			// 		const match = result.toString();
-			// 		const prefix = text.substr(0, result.index);
-			// 		const suffix = text.substr(result.index + match.length);
+			// function getResultsString (results, text) {
+			// 	var i, result, match, prefix, suffix;
+			// 	for (i = 0; i <= results.length; i++) {
+			// 		match = results[i].toString();
+			// 		prefix = text.substr(0, match.index);
+			// 		suffix = text.substr(match.index + match.length);
 			// 		console.log(prefix, match, suffix, text);
 			// 	}
 			// }
 
-			createRegex(/world/);
-			// getMatches(createRegex('/world/', 'What in the world...'));
+			const matches = getMatches(createRegex('/world/gi'), 'world world');
+			getMatchesCountString(matches);
+			// getResultsString(matches, 'world world');
 
 			// ...
 
