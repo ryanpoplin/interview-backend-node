@@ -46,6 +46,8 @@ module.exports = () => {
 	    } else {
 			res.writeHead(404);
 		    
+		    // TODO: place these functions in a module
+		    
 		    // useful for client-side input, but also interesting regex manipulation based on possible params
 			function createRegex (regex) /*String*/ { // use a valid regex like: /l/gi for now
 				try {
@@ -83,17 +85,9 @@ module.exports = () => {
 				}
 			}
 
-			function getResultsString (results, text) {
-				var match, prefix, suffix;
-				for (var i = 0; i < results.length; i++) {
-					match = results[i].toString();
-					console.log(`match: ${match}`, `text: ${text}`);
-				}
-			}
-
-			const matches = getMatches(createRegex('/world/gi'), 'world world');
+			// 
+			const matches = getMatches(createRegex('//g'), '');
 			getMatchesCountString(matches);
-			getResultsString(matches, 'world world');
 
 			// ...
 

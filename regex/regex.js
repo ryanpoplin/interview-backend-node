@@ -26,3 +26,14 @@
 // const str4 = 'abcabc';
 // console.dir(str4.match(/b/));
 // console.dir(str4.match(/b/g));
+
+// /1.3/g = vague matcher = 1 3, 567123
+// . = wild card character
+// /1\d3/g = digit character = 123, 183, 1888888193
+// \w character is the word character, /1\w3/g, 1b3, 183, 1_3
+// Negation in regex: /w is opposite of /W for example. /1\w3/g will match 1b3, but /1\W3/g will match 1 3. The opposite of what it normally would
+// /[abc]/gi Regex Ranges will find each character in bicycle for example that's an a, b or c character
+// /[A-Z][a-z][a-z]/g will match Bun, Run, Ton
+// To match hello world and hello-world; use /hello[\- ]world/gi
+// match numbers like 123, 4.5, 1.1 and .45 use: /[\d.][\d.]\d/g Also, the [\d.] period in the range is treated as a standard period. Not a wild char
+// negation ranges: /[^a-e][f-h]/g '^' everything from abcde will not match and fgh will
