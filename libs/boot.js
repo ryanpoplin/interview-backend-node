@@ -83,19 +83,17 @@ module.exports = () => {
 				}
 			}
 
-			// function getResultsString (results, text) {
-			// 	var i, result, match, prefix, suffix;
-			// 	for (i = 0; i <= results.length; i++) {
-			// 		match = results[i].toString();
-			// 		prefix = text.substr(0, match.index);
-			// 		suffix = text.substr(match.index + match.length);
-			// 		console.log(prefix, match, suffix, text);
-			// 	}
-			// }
+			function getResultsString (results, text) {
+				var match, prefix, suffix;
+				for (var i = 0; i < results.length; i++) {
+					match = results[i].toString();
+					console.log(`match: ${match}`, `text: ${text}`);
+				}
+			}
 
 			const matches = getMatches(createRegex('/world/gi'), 'world world');
 			getMatchesCountString(matches);
-			// getResultsString(matches, 'world world');
+			getResultsString(matches, 'world world');
 
 			// ...
 
