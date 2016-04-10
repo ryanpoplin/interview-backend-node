@@ -46,17 +46,14 @@ module.exports = () => {
 	    } else {
 			res.writeHead(404);
 		    
-		    // ...
-			createRegex(regex) => { // use a valid regex like: /l/gi for now
+		    // useful for client-side input, but also interesting regex manipulation based on possible params
+			function createRegex(regex) { // use a valid regex like: /l/gi for now
 				try {
 					if (regex.charAt(0) === '/') { // then we have a possibly valid regex
 						regex = regex.split('/'); // '/l/gi' for example, it'd equal ['', 'l', 'gi']
 						regex.shift(); // since we got rid of the '/'s, shift off the '' at index 0. ['l', 'gi']
 						const flags = regex.pop(); // get the last items off array 'regex flags'; set flags to 'gi'
-						regex.unshift('/'); // add back the beginning /
-						regex.push('/'); // add back the ending /
 						regex = regex.join(''); // make the array a string without commas
-						console.log(regex); // log it in this state
 						regex = new RegExp(regex, flags); // create a new RegExp object with the pattern and the flags
 						console.log(regex); // log this state
 						return regex; // return it to program that requires its value
@@ -64,7 +61,7 @@ module.exports = () => {
 						console.log('The Regular Expression is not valid.');
 					}
 				} catch (e) {
-					err('The Regular Expression is invalid.');
+					err('The Regular Expression is not valid.');
 					console.log('Error');
 					return false;
 				}
@@ -102,7 +99,7 @@ module.exports = () => {
 			// 	}
 			// }
 
-			createRegex('/l/gi');
+			createRegex('/world/gi');
 
 			// ...
 

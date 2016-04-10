@@ -26,4 +26,3 @@
 // const str4 = 'abcabc';
 // console.dir(str4.match(/b/));
 // console.dir(str4.match(/b/g));
-
