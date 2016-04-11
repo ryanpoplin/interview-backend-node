@@ -8,7 +8,7 @@ const expect = require('chai').expect;
 
 describe('CNN Top Story Articles API', function () {
     it('should validate that the JSON ouput is valid and matches the expected schema', function (done) {
-        this.timeout = 3000;
+        this.timeout = 5000;
             require('./../datafeed/data.feed')(function (dataFeed) {
                 dataFeed.forEach(function (data) {
                     Object.keys(data).forEach(function(key) {
