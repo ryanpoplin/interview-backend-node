@@ -7,6 +7,7 @@ const numCPUs = require('os').cpus().length;
 import fs from 'fs';
 
 module.exports = () => {
+	// NOTE: this clustering logic can be removed if you use PM2 daemon module...
 	if (cluster.isMaster) {
 	  for (var i = 0; i < numCPUs; i++) {
 	    cluster.fork();
@@ -45,8 +46,13 @@ module.exports = () => {
 		  	res.end(JSON.stringify(jsonObj));
 	    } else {
 			res.writeHead(404);
-
-			require('./../datafeed/data.feed')();
+			
+			const matchArr = /(\S+) (\S*) ?(\S+)/i.exec('Ryan Matthew Poplin');
+			matchArr.forEach(function(index) {
+				console.log(index);
+			});
+			
+			// require('./../datafeed/data.feed')();
 
 		    res.end();
 	    }

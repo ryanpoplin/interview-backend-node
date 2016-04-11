@@ -103,3 +103,15 @@
 // parenthesis are used to define groups in regex
 // they are special chars.
 // lesson: \(?\d{3}\)?-?\d{3}-?\d{4} always test and break the regex's down @: https://regex101.com/#javascript
+// Matching the beginning and end input:
+// /^word|word$/gi means that 'word' starts and or ends a string of text or both to get the match status.
+// match will occur when a string of text is the only thing to check: /^world$/i
+// word boundary matches: /\bcan\b/g matches: Can can candy (will not match can in candy, though)
+// matching nonward boundaries:
+// /\bcan\B/g will match candy but not can 
+// will match something with a whitespace after it: /foo\s/gi
+// /\d{1,4}/gi will match '1234'1234 in the 8 character number input
+// However, /\d{1,4}?/gi will not be 'greedy', it'll just return the minimum amount of numbers being 1 in this case of 1234
+// example of using ungreedy patterns to get what we are looking for more efficiently: /class=".*?"/g
+// name pattern: /(\S+) (\S*) ?(\S+)/ the matches: 1. group 1 contains a manditory non-space set like 1234 or asdf. The '+' sign mean it can keep going indefinitly. 2. same thing as 1, however, the * makes it optional to be there as a middle name should be and a space is added. 3. another space is added, but it's optional ' ?'.
+

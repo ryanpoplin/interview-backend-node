@@ -7,6 +7,8 @@ module.exports = (articlesArr, callback) => {
         for (key in article) {
             if (article.hasOwnProperty(key)) {
 
+                console.log(article[key]);
+
                 // TODO: move these into modules
                 // url
                 if (article[key]['url']) {
