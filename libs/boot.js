@@ -45,52 +45,9 @@ module.exports = () => {
 		  	res.end(JSON.stringify(jsonObj));
 	    } else {
 			res.writeHead(404);
-		    
-		    // TODO: place these functions in a module
-		    
-		    // useful for client-side input, but also interesting regex manipulation based on possible params
-			function createRegex (regex) /*String*/ { // use a valid regex like: /l/gi for now
-				try {
-					if (regex.charAt(0) === '/') { // then we have a possibly valid regex literal syntax
-						regex = regex.split('/'); // '/l/gi' for example, it'd equal ['', 'l', 'gi']
-						regex.shift(); // since we got rid of the '/'s, shift off the '' at index 0. ['l', 'gi']
-						const flags = regex.pop(); // get the last items off array 'regex flags'; set flags to 'gi'
-						regex = regex.join(''); // make the array a string without commas
-						regex = new RegExp(regex, flags); // create a new RegExp object with the pattern and the flags
-						return regex; // return it to program that requires its value
-					} else {
-						console.log('The Regular Expression is not valid.');
-					}
-				} catch (e) {
-					console.log('Error');
-					return false;
-				}
-			}
 
-			function getMatches (regex, text) /*RegEx, String*/ {
-				const results = [];
-				const regexLoopCondition = createRegex(regex.toString());
-				while (regexLoopCondition.exec(text) !== null) {
-					results.push(regex.exec(text));
-				}
-				console.log(results);
-				return results;
-			}
-
-			function getMatchesCountString (results) {
-				if (results.length > 0) {
-					console.log(`There are ${results.length} matches`);
-				} else {
-					console.log('There are 0 matches');
-				}
-			}
-
-			// 
-			const matches = getMatches(createRegex('//g'), '');
-			getMatchesCountString(matches);
-
-			// ...
-
+			
+			
 		    res.end();
 	    }
 

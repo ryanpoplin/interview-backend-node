@@ -1,5 +1,50 @@
 'use strict';
 
+// // TODO: place these functions in a module
+
+// // useful for client-side input, but also interesting regex manipulation based on possible params
+// function createRegex (regex) /*String*/ { // use a valid regex like: /l/gi for now
+// 	try {
+// 		if (regex.charAt(0) === '/') { // then we have a possibly valid regex literal syntax
+// 			regex = regex.split('/'); // '/l/gi' for example, it'd equal ['', 'l', 'gi']
+// 			regex.shift(); // since we got rid of the '/'s, shift off the '' at index 0. ['l', 'gi']
+// 			const flags = regex.pop(); // get the last items off array 'regex flags'; set flags to 'gi'
+// 			regex = regex.join(''); // make the array a string without commas
+// 			regex = new RegExp(regex, flags); // create a new RegExp object with the pattern and the flags
+// 			console.log(regex);
+// 			return regex; // return it to program that requires its value
+// 		} else {
+// 			console.log('The Regular Expression is not valid.');
+// 		}
+// 	} catch (e) {
+// 		console.log('Error');
+// 		return false;
+// 	}
+// }
+
+// function getMatches (regex, text) /*RegEx, String*/ {
+// 	const results = [];
+// 	const regexLoopCondition = createRegex(regex.toString());
+// 	while (regexLoopCondition.exec(text) !== null) {
+// 		results.push(regex.exec(text));
+// 	}
+// 	console.log(results);
+// 	return results;
+// }
+
+// function getMatchesCountString (results) {
+// 	if (results.length > 0) {
+// 		console.log(`There are ${results.length} matches`);
+// 	} else {
+// 		console.log('There are 0 matches');
+// 	}
+// }
+
+// const matches = getMatches(createRegex('//'), '');
+// getMatchesCountString(matches);
+
+/////////////////////////////////////////////////////
+
 // rgx
 // const rgx = /hello/gi; // regex object literal syntax to check 'strings' for patterns
 // here we're checking that the string passed into the .test() method of the rxg object 
@@ -37,3 +82,23 @@
 // To match hello world and hello-world; use /hello[\- ]world/gi
 // match numbers like 123, 4.5, 1.1 and .45 use: /[\d.][\d.]\d/g Also, the [\d.] period in the range is treated as a standard period. Not a wild char
 // negation ranges: /[^a-e][f-h]/g '^' everything from abcde will not match and fgh will
+// defining multipliers in regex:
+// /[A-Z][a-z]+/g, for instance: a match for a name like: Vredesbyrdann Poplin. One or more occurences... 
+// Zero or one occurence:
+// /apples?/gi will match the following: Apples apple apple. It'll match all three.
+// Zero or more occurences multiplier...
+// /update!*/g will match the following: update! update!!! update!!!!!!
+// custom multipliers: 
+// check for a number: 360-1231
+// /\d{3}-\d{3}-\d{4}/ matches 543-345-3455
+// matching n or more occurences:
+// /.{6,}/ matches: asdfgjoioijioj asdfjkl; asdfjkl;asdf jkl;
+// matching n to m occurrences
+// for instance a maximum and minimum amount of characters for comments:
+// /.{15,140}/
+// matching alternated options:
+// /yes|no/g will match yes or no but can be hack around
+// phone number matcher regex for JavaScript:
+// /\(?\d{3}\)?-?\d{3}-?\d{4}/ 
+// parenthesis are used to define groups in regex
+// they are special chars.
