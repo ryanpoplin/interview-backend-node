@@ -46,16 +46,7 @@ module.exports = () => {
 		  	res.end(JSON.stringify(jsonObj));
 	    } else {
 			res.writeHead(404);
-			
-			const matchArr = /(\S+) (\S*) ?\b(\S+)/i.exec('Ryan Poplin');
-			if (matchArr) {
-				matchArr.forEach(function(index) {
-					console.log(index);
-				});
-			} else {
-				console.log('The text did not match the regular expression. Thus, it\'s null');
-			}
-			
+
 			// require('./../datafeed/data.feed')();
 
 		    res.end();

@@ -114,3 +114,16 @@
 // However, /\d{1,4}?/gi will not be 'greedy', it'll just return the minimum amount of numbers being 1 in this case of 1234
 // example of using ungreedy patterns to get what we are looking for more efficiently: /class=".*?"/g
 // name pattern: /(\S+) (\S*) ?\b(\S+)/ the matches: 1. group 1 contains a manditory non-space set like 1234 or asdf. The '+' sign mean it can keep going indefinitly. 2. same thing as 1, however, the * makes it optional to be there as a middle name should be and a space is added. 3. another space is added, but it's optional ' ?'.
+// capture and non-capture groups
+// /http:\/\/\w+(?=\.io|\.com)/ will match http://loopi.com || http://www.loopi.io for example
+// const matchArr = /(\S+) (\S*) ?\b(\S+)/i.exec('Ryan Matthew Poplin');
+// if (matchArr) {
+// 	matchArr.forEach(function(index) {
+// 		console.log(index);
+// 	});
+// } else {
+// 	console.log('The text did not match the regular expression. Thus, it\'s null');
+// }
+
+// const text = 'https://www.cnn.com';
+// console.log(text.match(/http:|https:\/\/www\.\w+(?=\.io|\.com)/)[0]);
