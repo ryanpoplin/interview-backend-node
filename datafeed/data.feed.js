@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = (callback) => {
+module.exports = () => {
 
     const request = require('superagent'),
         dataUrl = 'http://www.cnn.com/data/ocs/section/index.html:homepage1-zone-1.json';
