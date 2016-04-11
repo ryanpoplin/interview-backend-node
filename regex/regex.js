@@ -102,3 +102,4 @@
 // /\(?\d{3}\)?-?\d{3}-?\d{4}/ 
 // parenthesis are used to define groups in regex
 // they are special chars.
+// lesson: \(?\d{3}\)?-?\d{3}-?\d{4} always test and break the regex's down @: https://regex101.com/#javascript
