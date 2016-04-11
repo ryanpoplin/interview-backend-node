@@ -113,5 +113,4 @@
 // /\d{1,4}/gi will match '1234'1234 in the 8 character number input
 // However, /\d{1,4}?/gi will not be 'greedy', it'll just return the minimum amount of numbers being 1 in this case of 1234
 // example of using ungreedy patterns to get what we are looking for more efficiently: /class=".*?"/g
-// name pattern: /(\S+) (\S*) ?(\S+)/ the matches: 1. group 1 contains a manditory non-space set like 1234 or asdf. The '+' sign mean it can keep going indefinitly. 2. same thing as 1, however, the * makes it optional to be there as a middle name should be and a space is added. 3. another space is added, but it's optional ' ?'.
-
+// name pattern: /(\S+) (\S*) ?\b(\S+)/ the matches: 1. group 1 contains a manditory non-space set like 1234 or asdf. The '+' sign mean it can keep going indefinitly. 2. same thing as 1, however, the * makes it optional to be there as a middle name should be and a space is added. 3. another space is added, but it's optional ' ?'.
