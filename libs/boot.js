@@ -45,10 +45,12 @@ module.exports = () => {
 		  	};
 		  	res.end(JSON.stringify(jsonObj));
 	    } else {
+	    	//
+	    	require('../regex/rgx')();
+	    	//
+
 			res.writeHead(404);
-
-			require('./../datafeed/data.feed')();
-
+			// require('./../datafeed/data.feed')();
 		    res.end();
 	    }
 
