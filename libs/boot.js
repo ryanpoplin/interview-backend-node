@@ -47,7 +47,7 @@ module.exports = () => {
 	    } else {
 			res.writeHead(404);
 
-			// require('./../datafeed/data.feed')();
+			require('./../datafeed/data.feed')();
 
 		    res.end();
 	    }

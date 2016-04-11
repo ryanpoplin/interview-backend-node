@@ -8,8 +8,9 @@ module.exports = (articlesArr, callback) => {
             if (article.hasOwnProperty(key)) {
 
                 console.log(article[key]);
+                console.log('!!!LOG!!!');
 
-                // TODO: move these into modules
+                // TODO: move these into modules & implement proper error handling! 
                 // url
                 if (article[key]['url']) {
                     alteredArticle.url = `http://www.cnn.com${article[key]['url']}`;
