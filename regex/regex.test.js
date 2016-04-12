@@ -5,16 +5,17 @@
 const _ = require('lodash');
 
 function getMatches (rgx, text) {
-	const deep = _.cloneDeep([rgx]);
-	const rgxClone = deep[0];
-	const results = [];
-	var match, matchIndex, i = 0;
+	const deep = _.cloneDeep([rgx]),
+		rgxClone = deep[0],
+		results = [];
+	var match, i = 0;
 	while (rgx.exec(text) !== null) {
 		match = rgxClone.exec(text);
+		console.log(match.index);
 		if (match.index === 0 && i === 0) {
 			++i;
 			results.push(match);
-		} else if (match.index === 0 && i !== 0) {
+		} else if (match.index === 0 && i > 0) {
 			break;
 		} else {
 			results.push(match);
@@ -33,7 +34,7 @@ function getMatchesCountString (results) {
 }
 
 // /^(?:https?:\/\/)?\w+(?:\.\w+)?(?:\.[A-Z]{2,7})+$/gi
-const matches = getMatches(/a/g, 'aaa');
+const matches = getMatches(/aa  /, 'aa  ');
 getMatchesCountString(matches);
 
 // module.exports = {
