@@ -1,16 +1,21 @@
-'use strict';
+// 'use strict';
 
-import fs from 'fs';
+// import fs from 'fs';
 
-module.exports = function () {
+// // function rgxUrl (url) {
+// // 	console.log(/^(?:https?:\/\/)?\w+(?:\.\w+)?(?:\.[A-Z]{2,7})+$/i.test());
+// // }
 
-	fs.readFile('./regex/access.log', function (err, data) {
-		if (err) throw err;
-		const text = data.toString();
-		const lines = text.split('\n');
-		lines.forEach(function (line) {
-			console.log(line);
-		});
-	});
+// // function rgxHeadline (headline) {
+// // 	const rg = //.match();
+// // }
 
-};
+// // function rgxByLine (byLine) {
+// // 	const rgx = //.match();
+// // }
+
+// module.exports = {
+// 	rgxUrl: rgxUrl
+// 	// rgxHeadline: rgxHeadline,
+// 	// rgxByLine: rgxByLine
+// };
