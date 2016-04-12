@@ -1,24 +1,23 @@
 'use strict';
 
-// make this a module so that I can test for matches during development and testing
-
 const _ = require('lodash');
 
 function getMatches (rgx, text) {
 	const deep = _.cloneDeep([rgx]),
 		rgxClone = deep[0],
 		results = [];
-	var match, i = 0;
+	var match, 
+		i;
 	while (rgx.exec(text) !== null) {
 		match = rgxClone.exec(text);
-		console.log(match.index);
-		if (match.index === 0 && i === 0) {
-			++i;
+		if (match.index > i) {
+			i = match.index;
 			results.push(match);
-		} else if (match.index === 0 && i > 0) {
+		} else if (i === undefined) {
+			i = match.index;
+			results.push(match);	
+		} else if (match.index === i) {
 			break;
-		} else {
-			results.push(match);
 		}
 	}
 	console.log(results);
@@ -33,10 +32,11 @@ function getMatchesCountString (results) {
 	}
 }
 
-// /^(?:https?:\/\/)?\w+(?:\.\w+)?(?:\.[A-Z]{2,7})+$/gi
-const matches = getMatches(/aa  /, 'aa  ');
+const matches = getMatches(/^(?:https?:\/\/)?\w+(?:\.\w+)?(?:\.[A-Z]{2,7})+$/i, 'https://www.luupy.io');
 getMatchesCountString(matches);
 
-// module.exports = {
+const matches2 = getMatches(/aa  a   /, 'aa  a   ');
+getMatchesCountString(matches2);
 
-// };
+const matches3 = getMatches(/Here we go regular expressions /, 'Here we go regular expressions');
+getMatchesCountString(matches3);
