@@ -45,12 +45,35 @@ module.exports = () => {
 		  	};
 		  	res.end(JSON.stringify(jsonObj));
 	    } else {
+	    	
 	    	//
-	    	require('../regex/rgx')();
+	    	// require('../regex/rgx')();
+			// require('./../datafeed/data.feed')();
+			require('./../datafeed/data.feed')(/*function (dataFeed) {
+                dataFeed.forEach(function (data) {
+                    Object.keys(data).forEach(function(key) {
+                        switch (key) {
+                            case 'url':
+
+                                break;
+                            case 'headline':
+
+                                break;
+                            case 'imageUrl':
+
+                                break;
+                            case 'byLine':
+
+                                break;
+                            default:
+                                break;
+                        }
+                    });
+                });
+	        }*/);
 	    	//
 
 			res.writeHead(404);
-			// require('./../datafeed/data.feed')();
 		    res.end();
 	    }
 
