@@ -5,8 +5,7 @@
 const _ = require('lodash');
 
 function getMatches (rgx, text) {
-	const rgxObject = [rgx];
-	const deep = _.cloneDeep(rgxObject);
+	const deep = _.cloneDeep([rgx]);
 	const rgxClone = deep[0];
 	const results = [];
 	var match, matchIndex, i = 0;
@@ -34,7 +33,7 @@ function getMatchesCountString (results) {
 }
 
 // /^(?:https?:\/\/)?\w+(?:\.\w+)?(?:\.[A-Z]{2,7})+$/gi
-const matches = getMatches(/CNNn /g, 'CNNn CNNn CNNn ');
+const matches = getMatches(/a/g, 'aaa');
 getMatchesCountString(matches);
 
 // module.exports = {
