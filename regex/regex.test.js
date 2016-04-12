@@ -1,5 +1,7 @@
 'use strict';
 
+// make this a module so that I can test for matches during development and testing
+
 function getMatches (rgx, text) {
 	// TODO: implement regexp object cloning logic
 	const rgxClone = /a/gi;
