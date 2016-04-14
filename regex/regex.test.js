@@ -7,16 +7,15 @@ function getMatches (rgx, text) {
 		rgxClone = deep[0],
 		results = [],
 		resultsContainer = {};
-	
 	var match, 
 		i;
 
 	while (rgx.exec(text) !== null) {
 		match = rgxClone.exec(text);
-		if (match.index > i) {
+		if (i === undefined) {
 			i = match.index;
 			results.push(match);
-		} else if (i === undefined) {
+		} else if (match.index > i) {
 			i = match.index;
 			results.push(match);	
 		} else if (match.index === i) {
@@ -25,6 +24,7 @@ function getMatches (rgx, text) {
 	}
 
 	if (results.length > 0) {
+		// TODO: refactor for proper string grammer return
 		resultsContainer.matches = `There are ${results.length} matches`;
 	} else {
 		resultsContainer.matches = 'There are 0 matches';
@@ -35,14 +35,10 @@ function getMatches (rgx, text) {
 	return resultsContainer;
 }
 
-// module.exports = {
-// 	getMatches: getMatches
-// };
-
 // getMatches(/^(?:https?:\/\/)?\w+(?:\.\w+)?(?:\.[A-Z]{2,7})+$/i, 'https://www.luupy.io');
 // getMatches(/aa  a        /g, 'aa  a        aa  a        ');
 // getMatches(/Here we go regular expressions /, 'Here we go regular expressions ');
 // getMatches(/1.3/g, '1 3183');
 // getMatches(/1\d3/g, '123123123123');
 // getMatches(/1\w3/g, '1b2');
-getMatches(/a a  a/, 'a a  a');
+getMatches(/a a  a/, 'a a  aa a  A');

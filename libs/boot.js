@@ -73,6 +73,8 @@ module.exports = () => {
 	        }*/);
 	    	//
 
+	    	require('./../regex/regex.test');
+
 			res.writeHead(404);
 		    res.end();
 	    }
